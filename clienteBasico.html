@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>B&aacute;sico websockets</title>
+    <!--
+      <script src="https://cdn.socket.io/socket.io-1.3.5.js">
+    -->
+    <script src="http://localhost:8082/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div class="">
+      <button type="button" onclick="mandarMensaje()"  name="button">Saludar</button>
+    </div>
+
+    <script type="text/javascript">
+    var chat = io.connect('http://localhost:8082');
+    chat.on('connect', function () {
+      console.log('conectado');
+      chat.on('respServer',function(data){
+        console.log(data);
+      });
+    });
+
+    function mandarMensaje(){
+      console.log('en la funcion mandar mensaje :)');
+      chat.emit('saluda','hola servidor');
+    }
+
+
+    </script>
+  </body>
+</html>
